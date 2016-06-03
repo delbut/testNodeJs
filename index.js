@@ -12,6 +12,7 @@ api.get('/contacts', function (req, res, next) {
     res.send([])
 });
 
+var ap;
 console.log("Start on port 3000")
 api.listen(3000);
 
