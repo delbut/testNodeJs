@@ -22,17 +22,23 @@ describe('API', function () {
                     return res.body instanceof Array
                 });
         });
-        it('GET /contacts/:name should return 404 response', function () {
-            return request(api)
-                .get('/contacts/none')
-                .send()
-                .expect(404);
-        });
+        // it('GET /contacts/:name should return 404 response', function () {
+        //     return request(api)
+        //         .get('/contacts/none')
+        //         .send()
+        //         .expect(404);
+        // });
         it('POST /contacts should create contact', function () {
             return request(api)
                 .post('/contacts')
-                .send({name: "edward"})
+                .send({contact: {name: "edward"}})
                 .expect(200);
+        });
+        it('POST /contacts/:name should return a 422', function () {
+            return request(api)
+                .post('/contacts')
+                .send({foo: 'bar'})
+                .expect(422);
         });
         it('PUT /contacts/:name/:new update all contact with the same name', function () {
             return request(api)
