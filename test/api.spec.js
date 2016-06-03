@@ -9,13 +9,13 @@ describe('API', function () {
     describe('Contacts /', function () {
         it('GET /contacts should return list of registered contacts', function () {
             return request(api)
-                .get('/contacts')
+                .get('/api/contacts')
                 .send()
                 .expect(200);
         });
         it('GET /contacts/:name should return contact of registered by name', function () {
             return request(api)
-                .get('/contacts/foo')
+                .get('/api/contacts/foo')
                 .send()
                 .expect(200)
                 .expect(function (res, err) {
@@ -30,25 +30,25 @@ describe('API', function () {
         // });
         it('POST /contacts should create contact', function () {
             return request(api)
-                .post('/contacts')
+                .post('/api/contacts')
                 .send({contact: {name: "edward"}})
                 .expect(200);
         });
         it('POST /contacts/:name should return a 422', function () {
             return request(api)
-                .post('/contacts')
+                .post('/api/contacts')
                 .send({foo: 'bar'})
                 .expect(422);
         });
         it('PUT /contacts/:name/:new update all contact with the same name', function () {
             return request(api)
-                .put('/contacts/foo/bar')
+                .put('/api/contacts/foo/bar')
                 .send()
                 .expect(200);
         });
         it('DELETE /contacts/:name delete all contact with the same name', function () {
             return request(api)
-                .delete('/contacts/foo')
+                .delete('/api/contacts/foo')
                 .send()
                 .expect(200);
         })
