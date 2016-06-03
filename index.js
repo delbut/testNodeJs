@@ -6,6 +6,8 @@ var bodyparser = require('body-parser');
 var _ = require('lodash')
 var api = express();
 
+var delfaultPort = 3000;
+var port = process.env.PORT || delfaultPort;
 var contacts = [];
 api.get('/', function (req, res, next) {
     res.send('Hello world')
@@ -50,7 +52,7 @@ api.delete('/contacts/:name', function (req, res, next) {
     })
     res.send({count: count});
 });
-console.log("Start on port 3000")
-api.listen(3000);
+console.log("Start on port :" + port)
+api.listen(port);
 
 module.exports = api;
